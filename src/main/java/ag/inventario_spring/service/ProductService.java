@@ -7,7 +7,7 @@ import java.util.List;
 public interface ProductService {
     public List<Product> listProducts();
 
-    public Product getProducBySku(Product product);
+    public Product getProducBySku(Integer sku);
 
     public void saveProduct(Product product);
 
