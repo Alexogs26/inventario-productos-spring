@@ -42,7 +42,7 @@ public class InventarioSpringApplication implements CommandLineRunner {
         do {
             try {
                 option = displayMenu(console);
-                executeOption(option, console, productService);
+                executeOption(option, console);
             } catch (NumberFormatException e) {
                 logger.info("\nError: Ingrese solo numeros" + e.getMessage() + "\n");
             }
@@ -62,24 +62,24 @@ public class InventarioSpringApplication implements CommandLineRunner {
         return Integer.parseInt(console.nextLine());
     }
 
-    private void executeOption(int option, Scanner console, ProductService productService) {
+    private void executeOption(int option, Scanner console) {
         switch (option) {
-            case 1 -> listProducts(productService);
-            case 2 -> getProductBySku(console, productService);
-            case 3 -> addProduct(console, productService);
-            case 4 -> updateProduct(console, productService);
-            case 5 -> deleteProduct(console, productService);
+            case 1 -> listProducts();
+            case 2 -> getProductBySku(console);
+            case 3 -> addProduct(console);
+            case 4 -> updateProduct(console);
+            case 5 -> deleteProduct(console);
             case 6 -> logger.info("\nCerrando el sistema...\n");
             default -> logger.info("\nOpcion invalida\n");
         }
     }
 
-    private void listProducts(ProductService productService) {
+    private void listProducts() {
         logger.info("\nListando Productos:\n");
         logger.info(productService.listProducts().toString());
     }
 
-    private void getProductBySku(Scanner console, ProductService productService) {
+    private void getProductBySku(Scanner console) {
         logger.info("\nIngresa el sku del producto a buscar: ");
         Integer sku = Integer.parseInt(console.nextLine());
         if (productService.getProductBySku(sku) != null) {
@@ -89,7 +89,7 @@ public class InventarioSpringApplication implements CommandLineRunner {
         }
     }
 
-    private void addProduct(Scanner console, ProductService productService) {
+    private void addProduct(Scanner console) {
         logger.info("\nIntroduce el nombre de el producto: ");
         String name = console.nextLine();
         logger.info("\nIntroduce el precio de el producto: ");
@@ -104,7 +104,7 @@ public class InventarioSpringApplication implements CommandLineRunner {
         }
     }
 
-    private void updateProduct(Scanner console, ProductService productService) {
+    private void updateProduct(Scanner console) {
         logger.info("\nIngresa el sku del producto a modificar: ");
         Integer sku = Integer.parseInt(console.nextLine());
         Product product = productService.getProductBySku(sku);
@@ -129,7 +129,7 @@ public class InventarioSpringApplication implements CommandLineRunner {
         }
     }
 
-    private void deleteProduct(Scanner console, ProductService productService) {
+    private void deleteProduct(Scanner console) {
         logger.info("\nIngresa el sku del producto que deseas borrar: ");
         Integer sku = Integer.parseInt(console.nextLine());
 
