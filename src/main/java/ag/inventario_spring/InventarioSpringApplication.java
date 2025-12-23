@@ -30,6 +30,10 @@ public class InventarioSpringApplication implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
+        InventoryApp();
+    }
+
+    private void InventoryApp() {
         logger.info("\n*** Inventario de Productos ***\n");
         var console = new Scanner(System.in);
         int option = 0;
