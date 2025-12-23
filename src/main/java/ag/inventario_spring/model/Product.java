@@ -13,7 +13,7 @@ import java.math.BigDecimal;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-
+@ToString
 @EqualsAndHashCode
 public class Product {
     @Id
@@ -22,12 +22,4 @@ public class Product {
     private String name;
     private BigDecimal price;
 
-    @Override
-    public String toString() {
-        return "Product{" +
-                "sku=" + sku +
-                ", name='" + name + '\'' +
-                ", price=" + price +
-                '}' + "\n";
-    }
 }

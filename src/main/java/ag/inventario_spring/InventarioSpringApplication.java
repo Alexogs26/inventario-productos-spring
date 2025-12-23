@@ -10,6 +10,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import java.math.BigDecimal;
+import java.util.List;
 import java.util.Scanner;
 
 
@@ -37,7 +38,7 @@ public class InventarioSpringApplication implements CommandLineRunner {
         logger.info("\n*** Inventario de Productos ***\n");
         var console = new Scanner(System.in);
         int option = 0;
-        logger.info(productService.listProducts().toString());
+        listProducts();
 
         do {
             try {
@@ -76,7 +77,8 @@ public class InventarioSpringApplication implements CommandLineRunner {
 
     private void listProducts() {
         logger.info("\nListando Productos:\n");
-        logger.info(productService.listProducts().toString());
+        List<Product> products = productService.listProducts();
+        products.forEach(product -> logger.info(product.toString() + "\n"));
     }
 
     private void getProductBySku(Scanner console) {
