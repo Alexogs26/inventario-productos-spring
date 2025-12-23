@@ -23,7 +23,7 @@ public class ProductServiceImpl implements ProductService{
 
     @Override
     @Transactional(readOnly = true)
-    public Product getProducBySku(Integer sku) {
+    public Product getProductBySku(Integer sku) {
         Product product = productRepository.findById(sku).orElse(null);
         return product;
     }
@@ -37,6 +37,7 @@ public class ProductServiceImpl implements ProductService{
     @Override
     @Transactional
     public void deleteProduct(Product product) {
+
         productRepository.delete(product);
     }
 }
